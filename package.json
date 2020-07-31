@@ -8,6 +8,7 @@
     "start:prod": "cd server && npm start",
     "start:dev": "concurrently \"cd server && npm run watch\" \"cd client && npm start\"",
     "install": "cd server && npm i && cd ../client && npm i",
+    "seed": "cd server && npm run seed",
     "heroku-postbuild": "cd client && npm run build"
   },
   "repository": {
@@ -15,8 +16,8 @@
     "url": "git@work.github.com:arosenkranz/googlebooks-app.git"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "Izabela Petrovicova",
+  "license": "MIT",
   "dependencies": {
     "if-env": "^1.0.4"
   },
