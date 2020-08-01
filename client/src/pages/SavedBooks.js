@@ -5,15 +5,15 @@ import { getMe, deleteBook } from '../utils/API';
 import Auth from '../utils/auth';
 import { removeBookId } from '../utils/localStorage';
 import {useMutation, useQuery} from '@apollo/react-hooks';
-import {GET_ME} from '../utils/queries';
+import { GET_ME, QUERY_USER } from '../utils/queries';
 import { REMOVE_BOOK } from '../utils/mutations';
+import { Redirect, useParams } from 'react-router-dom';
 
-
-// const [removeBook, {error}] = useMutation(REMOVE_BOOK );
 
 
 const SavedBooks = () => {
   // const [userData, setUserData] = useState({});
+  // const { username: userParam } = useParams();
 
   // use this to determine if `useEffect()` hook needs to run again
 
@@ -21,10 +21,19 @@ const SavedBooks = () => {
   const [removeBook, {error}] = useMutation(REMOVE_BOOK);
 
   const { loading, data} = useQuery(GET_ME);
-  const userData = data?.me || {};
+  // const userData = data?.me || [];
+  // const userData = data?.me || data?.user || {};
+  // if (Auth.loggedIn() && Auth.getProfile().data.username.toLowerCase() === `${userParam ? userParam.toLowerCase() : ''}`) 
+  // {return <Redirect to="/saved" />; }
+
+  const userData = data?.me || [];
+
+  // const { loading, data } = useQuery(userParam ? QUERY_USER : GET_ME, {
+  //   variables: { username: userParam }
+  // });
   const userDataLength = Object.keys(userData).length;
   console.log(userData);
-  
+
   // useEffect(() => {
   //   const getUserData = async () => {
   //     try {
@@ -52,6 +61,7 @@ const SavedBooks = () => {
 
   // create function that accepts the book's mongo _id value as param and deletes the book from the database
   const handleDeleteBook = async (bookId) => {
+
     const token = Auth.loggedIn() ? Auth.getToken() : null;
 
     if (!token) {
@@ -60,9 +70,12 @@ const SavedBooks = () => {
 
     try {
       // const response = await deleteBook(bookId, token);
-      const {data} = await removeBook({
+      // const {data} = 
+      await removeBook({
         variables: { bookId: bookId }
       });
+      console.log(data)
+      console.log(bookId)
 
 
       // if (!response.ok) {
@@ -71,6 +84,7 @@ const SavedBooks = () => {
 
       // const updatedUser = await response.json();
       // setUserData(updatedUser);
+
       // upon success, remove book's id from localStorage
       removeBookId(bookId);
     } catch (err) {
