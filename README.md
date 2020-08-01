@@ -22,7 +22,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 ## Deployed Application 
 
 [Book Search Engine](https://protected-wildwood-05297.herokuapp.com/)<br />
-![Image]()<br />
+![Image](https://github.com/izabelacloud/Book-Search-Engine/blob/master/mern.gif?raw=true)<br />
 
 
 ## Usage
