@@ -1,23 +1,6 @@
 import gql from 'graphql-tag';
 
 export const GET_ME = gql`
-# {
-#     me {
-#     _id
-#     username
-#     email
-#     bookCount
-#     savedBooks {
-#         _id
-#         authors
-#         bookId
-#         image
-#         link
-#         title
-#         description
-#     }
-# }
-
 {
     me {
       _id
@@ -25,6 +8,7 @@ export const GET_ME = gql`
       email
       bookCount
       savedBooks {
+        # _id
         bookId
         # authors
         image
@@ -36,17 +20,17 @@ export const GET_ME = gql`
   }
 `;
 
-export const QUERY_BOOKS = gql`
-  query savedBooks($authors: String, $description: String!, $bookId: String, $image: String, $link: String) {
-    books(authors: $authors, description: $description, bookId: $bookId, image: $image, link: $link) {
-        _id
-        # authors
-        bookId
-        image
-        link
-        title
-        description
-    }
-  }
-`;
+// export const QUERY_BOOKS = gql`
+//   query savedBooks($authors: String, $description: String!, $bookId: String, $image: String, $link: String) {
+//     books(authors: $authors, description: $description, bookId: $bookId, image: $image, link: $link) {
+//         _id
+//         # authors
+//         bookId
+//         image
+//         link
+//         title
+//         description
+//     }
+//   }
+// `;
 

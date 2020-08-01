@@ -95,47 +95,22 @@ const resolvers = {
             throw new AuthenticationError('You need to be logged in!');
         },
 
-        // async saveBook({ user, body }, res) {
-        //     console.log(user);
-        //     try {
-        //       const updatedUser = await User.findOneAndUpdate(
-        //         { _id: user._id },
-        //         { $addToSet: { savedBooks: body } },
-        //         { new: true, runValidators: true }
-        //       );
-        //       return res.json(updatedUser);
-        //     } catch (err) {
-        //       console.log(err);
-        //       return res.status(400).json(err);
-        //     }
-        //   },
-
-        // saveBook: async (parent, { user }, context) => {
-        //     if (context.user) {
-        //       const updatedUser = await User.findOneAndUpdate(
-        //         { _id: user._id },
-        //         { $addToSet: { savedBooks: { bookSchema } } },
-        //         { new: true, runValidators: true }
-        //       );
-          
-        //       return updatedUser;
-        //     }
-          
-        //     throw new AuthenticationError('You need to be logged in!');
-        //   },
 
 
-        removeBook: async (parent, {user}, context) => {
+        removeBook: async (parent, args, context) => {
+            if(context.user) {
             const updatedUser = await User.findOneAndUpdate(
-                { _id: user._id },
-                { $pull: { savedBooks: { bookId: params.bookId } } },
+                { _id: context.user._id },
+                { $pull: { savedBooks: { bookId: args.bookId } } },
                 { new: true }
             );
+
             return updatedUser;
+            }
+
+            throw new AuthenticationError('You need to be logged in!');
         }
-
     }
-
 };
 
 module.exports = resolvers;

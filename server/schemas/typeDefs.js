@@ -34,12 +34,6 @@ input savedBook {
 
 type Query {
     me: User  
-    # savedBooks: [Book]
-    # users: [User]
-    # # books: [Book]
-    # user(username: String!): User
-    # books(username: String): [Book]
-    # book(_id: ID!): Book
   }
 
 type Mutation {
