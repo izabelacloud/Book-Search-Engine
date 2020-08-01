@@ -10,7 +10,7 @@ const mongoose = require('mongoose');
 // module.exports = mongoose.connection;
 
 mongoose.connect(
-  process.env.MONGODB_URI || 'mongodb://localhost/deep-thoughts',
+  process.env.MONGODB_URI || 'mongodb://localhost/googlebooks',
   {
     useNewUrlParser: true, 
     useUnifiedTopology: true,
