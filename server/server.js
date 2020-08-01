@@ -1,9 +1,12 @@
 const express = require('express');
+const { ApolloServer } = require('apollo-server-express');
+const { authMiddleware } = require('./utils/auth');
+
 const path = require('path');
 const db = require('./config/connection');
 const routes = require('./routes');
-const { ApolloServer } = require('apollo-server-express');
-const { authMiddleware } = require('./utils/auth');
+
+
 //import our typeDefs and resolvers
 const { typeDefs, resolvers } = require('./schemas');
 
@@ -34,7 +37,7 @@ app.get('*', (req, res) => {
 
 
 
-// app.use(routes); //comment this out in the end
+app.use(routes); //comment this out in the end
 
 // db.once('open', () => {
 //   app.listen(PORT, () => console.log(`🌍 Now listening on localhost:${PORT}`));
