@@ -17,22 +17,22 @@ const SavedBooks = () => {
 
   // use this to determine if `useEffect()` hook needs to run again
 
-
+  const { loading, data} = useQuery(GET_ME);
   const [removeBook, {error}] = useMutation(REMOVE_BOOK);
 
-  const { loading, data} = useQuery(GET_ME);
   // const userData = data?.me || [];
   // const userData = data?.me || data?.user || {};
-  // if (Auth.loggedIn() && Auth.getProfile().data.username.toLowerCase() === `${userParam ? userParam.toLowerCase() : ''}`) 
-  // {return <Redirect to="/saved" />; }
 
   const userData = data?.me || [];
+
+  // if (Auth.loggedIn() && Auth.getProfile().data.username.toLowerCase() === `${userParam ? userParam.toLowerCase() : ''}`) 
+  // {return <Redirect to="/" />; }
 
   // const { loading, data } = useQuery(userParam ? QUERY_USER : GET_ME, {
   //   variables: { username: userParam }
   // });
-  const userDataLength = Object.keys(userData).length;
-  console.log(userData);
+  // const userDataLength = Object.keys(userData).length;
+  // console.log(userData);
 
   // useEffect(() => {
   //   const getUserData = async () => {
@@ -70,9 +70,8 @@ const SavedBooks = () => {
 
     try {
       // const response = await deleteBook(bookId, token);
-      // const {data} = 
-      await removeBook({
-        variables: { bookId: bookId }
+      const {data} = await removeBook({
+        variables: { bookId }
       });
       console.log(data)
       console.log(bookId)
@@ -93,7 +92,7 @@ const SavedBooks = () => {
   };
 
   // if data isn't here yet, say so
-  if (!userDataLength) {
+  if (loading) {
     return <h2>LOADING...</h2>;
   }
 
