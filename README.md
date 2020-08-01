@@ -27,7 +27,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Usage
 
-TBD
+This application allows to search for the books, save books to your saved book list and remove books from the saved book list.
 
 ## License
 
