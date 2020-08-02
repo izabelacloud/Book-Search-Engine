@@ -7,26 +7,6 @@ const resolvers = {
 
     Query: {
 
-        // books: async (parent, {username}) => {
-        //     const params = username ? {username} : {};
-        //     return Book.find(params).sort({ createdAt: -1 });
-        // },
-
-        // books: async (parent, args) => {
-        //     return Book.find();
-        // },
-
-        // book: async (parent, { _id}) => {
-        //     return Book.findOne({_id});
-        // },
-
-        //get all users
-        // users: async () => {
-        //     return User.find()
-        //         .select('-__v -password')
-        //         .populate('books')
-        // },
-
         //get a user by username
         me: async (parent, args, context) => {
 
@@ -41,13 +21,6 @@ const resolvers = {
             throw new AuthenticationError('Not logged in')
 
         },
-
-        // me: async (parent, { username }) => {
-        //     return User.findOne({ username })
-        //     .select('-__v -password')
-
-        // }
-
 
     },
 
@@ -88,7 +61,6 @@ const resolvers = {
                 { new: true }
               );
           
-            //   return res.json;
             return updatedUser;
             }
           
